@@ -21,17 +21,13 @@ const bannerAdRoutes = require('../routes/banneradRoutes');
 const notificationRoutes = require("../routes/notificationRoutes");
 const luckyDrawRoutes = require('../routes/luckyDrawRoutes');
 const usedSparePartRoutes = require('../routes/usedSparePartsRoutes');
+const vendorRoutes = require("../routes/vendorRoutes");
+
 const { isAuth, isAdmin } = require("../config/auth");
 
-// const {
-//   getGlobalSetting,
-//   getStoreCustomizationSetting,
-// } = require("../lib/notification/setting");
 connectDB();
 const app = express();
-// We are using this for the express-rate-limit middleware
-// See: https://github.com/nfriedly/express-rate-limit
-// app.enable('trust proxy');
+
 app.set("trust proxy", 1);
 app.use(express.json({ limit: "4mb" }));
 app.use(helmet());
@@ -58,6 +54,7 @@ app.use("/api/orders/", orderRoutes);
 app.use('/api/banner-ads', bannerAdRoutes);
 app.use("/api/luckydraw", luckyDrawRoutes);
 app.use("/api/used-parts", usedSparePartRoutes);
+app.use("/api/vendors", vendorRoutes);
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {
