@@ -44,6 +44,18 @@
 
 const mongoose = require("mongoose");
 
+// // Vendor Schema
+// const vendorSchema = new mongoose.Schema({
+//   name: { type: String, required: true },
+//   email: { type: String, unique: true, required: true },
+//   mobile: { type: String, required: true },
+//   password: { type: String, required: true },
+//   status: { type: String, enum: ["active", "pending", "blocked"], default: "pending" },
+//   shop: { type: mongoose.Schema.Types.ObjectId, ref: "Shop" },
+//   profileImage: { type: String }, // Optional profile picture
+//   isOnline: { type: Boolean, default: false }, // For chat availability
+// }, { timestamps: true });
+
 // Vendor Schema
 const vendorSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -54,6 +66,15 @@ const vendorSchema = new mongoose.Schema({
   shop: { type: mongoose.Schema.Types.ObjectId, ref: "Shop" },
   profileImage: { type: String }, // Optional profile picture
   isOnline: { type: Boolean, default: false }, // For chat availability
+
+  // Red-flag mechanism
+  refundCount: { type: Number, default: 0 },
+  returnCount: { type: Number, default: 0 },
+  complaintCount: { type: Number, default: 0 }, // Complaints from buyers
+  redFlag: { type: Boolean, default: false },
+  redFlagReason: { type: String, default: null },
+  isLimited: { type: Boolean, default: false }, // Restrict selling if true
+
 }, { timestamps: true });
 
 

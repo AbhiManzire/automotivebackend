@@ -22,6 +22,7 @@ const notificationRoutes = require("../routes/notificationRoutes");
 const luckyDrawRoutes = require('../routes/luckyDrawRoutes');
 const usedSparePartRoutes = require('../routes/usedSparePartsRoutes');
 const vendorRoutes = require("../routes/vendorRoutes");
+const videoBannerRoutes = require("../routes/videobannerRoutes");
 
 const { isAuth, isAdmin } = require("../config/auth");
 
@@ -55,6 +56,7 @@ app.use('/api/banner-ads', bannerAdRoutes);
 app.use("/api/luckydraw", luckyDrawRoutes);
 app.use("/api/used-parts", usedSparePartRoutes);
 app.use("/api/vendors", vendorRoutes);
+app.use('/api/videobanners', videoBannerRoutes);
 
 // Use express's default error handling middleware
 app.use((err, req, res, next) => {
